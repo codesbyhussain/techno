@@ -71,6 +71,8 @@ Route::get('/detail/clubs/{id}',[ClubController::class,'detail']);
 Route::get('/detail/events/{id}',[EventController::class,'detail']);
 Route::post('/enroll', [EventController::class,'enroll']);
 Route::get('/enrolled',[EventController::class,'myevents']);
+Route::get('/disenroll/{id}', [EventController::class,'disenroll']);
+
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

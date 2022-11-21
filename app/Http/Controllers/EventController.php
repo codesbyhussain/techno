@@ -32,7 +32,11 @@ class EventController extends Controller
     else{
         return redirect("/login");
     }
+    }
 
+    function disenroll($id){
+        Order::destroy($id);
+        return redirect("/enrolled");
     }
 
     function myevents(){
@@ -40,6 +44,7 @@ class EventController extends Controller
         $userId=Session::get('user')['id'];
         $orders = DB::table('orders')
         ->join('events','orders.event_id','=','events.id')
+        ->select('events.*','orders.id as order_id')
         ->where('orders.user_id',$userId)
         ->get();
 

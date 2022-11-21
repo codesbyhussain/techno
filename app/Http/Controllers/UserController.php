@@ -28,17 +28,17 @@ class UserController extends Controller
     
     public function register(Request $request)  //create user account
     {
-        try{
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:10',
-            'email' => 'required|email',
-            'password' => 'required|min:2',
-            'c_password' => 'required|same:password',
-        ]);
+        // try{
+        // $validator = Validator::make($request->all(), [
+        //     'name' => 'required|max:10',
+        //     'email' => 'required|email',
+        //     'password' => 'required|min:2',
+        //     'c_password' => 'required|same:password',
+        // ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors();
-        }
+        // if ($validator->fails()) {
+        //     return redirect()->back()->withErrors();
+        // }
 
         $data = $request->only(['name', 'email', 'password']);
         $data['password'] = Hash::make($data['password']);
@@ -46,11 +46,12 @@ class UserController extends Controller
         $user = User::create($data);
         $user->save();
 
-        return redirect("/login");}
+        return redirect("/login");
+    // }
 
-        catch(Exception $e){
-            return redirect("/register");
-        }
+    //     catch(Exception $e){
+    //         return redirect("/register");
+    //     }
     }
 
 }
